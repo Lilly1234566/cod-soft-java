@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+
+    // Hardcoded exchange rates for testing in an online compiler
+    public static double getExchangeRate(String baseCurrency, String targetCurrency) {
+        // Sample exchange rates (Assume 1 USD = 83.27 INR, 1 EUR = 90 INR)
+        if (baseCurrency.equals("USD") && targetCurrency.equals("INR")) {
+            return 83.27;
+        } else if (baseCurrency.equals("EUR") && targetCurrency.equals("INR")) {
+            return 90.00;
+        } else if (baseCurrency.equals("INR") && targetCurrency.equals("USD")) {
+            return 0.012;
+        } else {
+            return -1; // Error case
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // User input: Base currency
+        System.out.print("Enter base currency (e.g., USD, EUR, INR): ");
+        String baseCurrency = scanner.next().toUpperCase();
+
+        // User input: Target currency
+        System.out.print("Enter target currency (e.g., USD, EUR, INR): ");
+        String targetCurrency = scanner.next().toUpperCase();
+
+        // User input: Amount to convert
+        System.out.print("Enter amount to convert: ");
+        double amount = scanner.nextDouble();
+
+        // Get exchange rate (Using hardcoded values)
+        double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
+        if (exchangeRate == -1) {
+            System.out.println("Error: Invalid currency pair.");
+        } else {
+            // Convert currency
+            double convertedAmount = amount * exchangeRate;
+            System.out.printf("Converted Amount: %.2f %s\n", convertedAmount, targetCurrency);
+        }
+
+        scanner.close();
+    }
+}
